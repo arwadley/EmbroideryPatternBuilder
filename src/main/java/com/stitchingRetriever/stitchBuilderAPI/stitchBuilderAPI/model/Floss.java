@@ -1,7 +1,5 @@
 package com.stitchingRetriever.stitchBuilderAPI.stitchBuilderAPI.model;
 
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -12,23 +10,15 @@ public class Floss implements Serializable {
     @Id
     @Column(name="DMC_COLOR")
     private int dmcColor;
-    @Column(name="COLOR_NAME")
-    private String colorName;
     @Column(name="COLOR_HEX_VALUE")
     private String colorHexValue;
+    @Column(name="PRIMARY_COLOR")
+    private String primaryColor;
 
-    public Floss(String colorName, int dmcColor, String colorHexValue){
-        this.colorName = colorName;
+    public Floss(int dmcColor, String colorHexValue, String primaryColor){
         this.dmcColor = dmcColor;
         this.colorHexValue = colorHexValue;
-    }
-
-    public String getColorName() {
-        return colorName;
-    }
-
-    public void setColor(String color) {
-        this.colorName = color;
+        this.primaryColor = primaryColor;
     }
 
     public int getDmcColor() {
