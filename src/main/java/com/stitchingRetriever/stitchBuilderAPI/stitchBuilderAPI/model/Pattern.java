@@ -4,6 +4,7 @@ package com.stitchingRetriever.stitchBuilderAPI.stitchBuilderAPI.model;
 import reactor.util.annotation.NonNull;
 
 import javax.persistence.*;
+import java.sql.Blob;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -16,57 +17,37 @@ public class Pattern {
     @Column(name="id")
     @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
-    @Column(name="prototype_image", columnDefinition ="BLOB")
-    private byte[] prototypeImage;
-    @Column(name="pattern_image", columnDefinition = "BLOB")
-    private byte[] patternImage;
-
-    public Pattern() {};
-
-    public long getId() {
-        return id;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Pattern pattern = (Pattern) o;
-        return id == pattern.id &&
-                Arrays.equals(patternImage, pattern.patternImage);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = Objects.hash(id);
-        result = 31 * result + Arrays.hashCode(patternImage);
-        return result;
-    }
+    @Lob
+    @Column(name="prototype_image")
+    private String prototypeImage;
+    @Lob
+    @Column(name="pattern_image")
+    private String patternImage;
 
     public void setId(long id) {
         this.id = id;
     }
 
-    public byte[] getPrototypeImage() {
+    public String getPrototypeImage() {
         return prototypeImage;
     }
 
-    public void setPrototypeImage(byte[] prototypeImage) {
+    public void setPrototypeImage(String prototypeImage) {
         this.prototypeImage = prototypeImage;
     }
 
-    public byte[] getPatternImage() {
+    public String getPatternImage() {
         return patternImage;
     }
 
-    public void setPatternImage(byte[] patternImage) {
+    public void setPatternImage(String patternImage) {
         this.patternImage = patternImage;
     }
 
-    public Pattern(long id, byte[] prototypeImage, byte[] patternImage) {
-        this.id = id;
-        this.prototypeImage = prototypeImage;
-        this.patternImage = patternImage;
+    public Pattern() {};
+
+    public long getId() {
+        return id;
     }
 
 
