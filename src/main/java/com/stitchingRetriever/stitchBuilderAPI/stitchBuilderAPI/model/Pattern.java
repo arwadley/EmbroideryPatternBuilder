@@ -17,12 +17,14 @@ public class Pattern {
     @Column(name="id")
     @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
-    @Lob
+    @Column(name="project_title")
+    private String title;
     @Column(name="prototype_image")
     private String prototypeImage;
-    @Lob
     @Column(name="pattern_image")
     private String patternImage;
+
+    public Pattern() {};
 
     public void setId(long id) {
         this.id = id;
@@ -44,7 +46,13 @@ public class Pattern {
         this.patternImage = patternImage;
     }
 
-    public Pattern() {};
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     public long getId() {
         return id;

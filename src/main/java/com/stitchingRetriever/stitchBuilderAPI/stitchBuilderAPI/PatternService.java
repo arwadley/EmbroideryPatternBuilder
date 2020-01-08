@@ -11,11 +11,13 @@ public class PatternService {
     @Autowired
     private PatternRepository patternRepository;
 
-    public void addNewPattern(Pattern pattern) {
+    public Pattern addNewPattern(Pattern pattern) {
         try{
-            this.patternRepository.save(pattern);
-        } catch(Exception e){
+            Pattern updatedPattern = this.patternRepository.save(pattern);
+            return updatedPattern;
+        } catch(Exception e) {
             System.out.println(e);
+            return pattern;
         }
     }
 }

@@ -22,7 +22,7 @@ public class PatternController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/protoImages")
-    public ResponseEntity saveImage(@RequestParam("file") MultipartFile file) {
+    public long saveImage(@RequestParam("file") MultipartFile file, @RequestParam("projectTitle") String title) {
         try {
             byte[] picture = file.getBytes();
             ByteArrayInputStream byteSteam = new ByteArrayInputStream(picture);
@@ -31,11 +31,13 @@ public class PatternController {
             ImageIO.write(bufferedPicture, "jpg", new File(imagePath));
             Pattern newPattern = new Pattern();
             newPattern.setPrototypeImage(imagePath);
-            patternService.addNewPattern(newPattern);
+            newPattern.setTitle(title);
+            newPattern = patternService.addNewPattern(newPattern);
+            long id = newPattern.getId();
+            return id;
         } catch (Exception e) {
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+            return -1;
         }
-        return new ResponseEntity(HttpStatus.ACCEPTED);
     }
 
     @CrossOrigin(origins = "*")
