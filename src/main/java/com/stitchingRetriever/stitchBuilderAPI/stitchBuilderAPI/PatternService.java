@@ -5,6 +5,8 @@ import com.stitchingRetriever.stitchBuilderAPI.stitchBuilderAPI.model.PatternRep
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class PatternService {
 
@@ -19,5 +21,10 @@ public class PatternService {
             System.out.println(e);
             return pattern;
         }
+    }
+
+    public Optional<Pattern> getPatternById(long id){
+        Optional<Pattern> currentPattern = this.patternRepository.findById(id);
+        return currentPattern;
     }
 }

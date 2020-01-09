@@ -31,6 +31,8 @@ dependencies {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
 	compile 'mysql:mysql-connector-java'
+	compile group: 'org.apache.pdfbox', name: 'pdfbox', version: '2.0.1'
+
 
 
 }
